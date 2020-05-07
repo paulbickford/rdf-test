@@ -1,0 +1,13 @@
+@use '~@material/theme';
+
+@use '~@material/ripple/index';
+@use '~@material/top-app-bar/mdc-top-app-bar';
+@use '~@material/icon-button/mdc-icon-button';
+
+.header-title {
+  font-size: 2rem;
+}
+
+.main-page {
+  padding: 0 3rem;
+}

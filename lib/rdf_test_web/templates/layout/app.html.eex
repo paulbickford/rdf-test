@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title><%= assigns[:page_title] || "RdfTest · Phoenix Framework" %></title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/mdc.css") %>"/>
+    <%= csrf_meta_tag() %>
+  </head>
+
+  <body>
+
+    <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="app-bar">
+      <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+          <span class="mdc-top-app-bar__title header-title">RDF / SPARQL Test App</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+          <a href="#" class="material-icons mdc-top-app-bar__action-item mdc-icon-button">rowing</a>
+          <%= link "rowing", to: Routes.query_path(@conn, :index) class: "material-icons mdc-top-app-bar__action-item mdc-icon-button" %>
+          <a href="" class="material-icons mdc-top-app-bar__action-item mdc-icon-button">view_list</a>
+        </section>
+      </div>
+    </header>
+
+    <main role="main" class="mdc-top-app-bar--fixed-adjust" id="main-content">
+      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <div class="main-page">
+        <%= render @view_module, @view_template, assigns %>
+      </div>
+    </main>
+
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+
+  </body>
+
+</html>
