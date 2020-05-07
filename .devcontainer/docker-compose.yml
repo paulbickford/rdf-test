@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  web:
+    volumes:
+      - .:/workspace:cached
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: .docker/app/run.sh -d
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
