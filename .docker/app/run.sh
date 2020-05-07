@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # CONTAINER_DEV flag indicates running
-# remotely in VS Code if true.
+# remotely with VS Code.
 CONTAINER_DEV="false"
 while getopts 'd' c
 do
@@ -23,7 +23,7 @@ cd ..
 while ! pg_isready -h db -U "postgres"
 do
   echo "$(date) - waiting for Postgres to start..."
-  sleep 1
+  sleep 1000
 done
 
 echo "\nCreate and migrate database..."
