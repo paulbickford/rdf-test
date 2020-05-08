@@ -19,9 +19,8 @@
           <span class="mdc-top-app-bar__title header-title">RDF / SPARQL Test App</span>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
-          <a href="#" class="material-icons mdc-top-app-bar__action-item mdc-icon-button">rowing</a>
-          <%= link "rowing", to: Routes.query_path(@conn, :index) class: "material-icons mdc-top-app-bar__action-item mdc-icon-button" %>
-          <a href="" class="material-icons mdc-top-app-bar__action-item mdc-icon-button">view_list</a>
+          <%= link "home", to: Routes.page_path(@conn, :index), class: "material-icons mdc-top-app-bar__action-item mdc-icon-button" %>
+          <%= link "view_list", to: Routes.query_path(@conn, :index), class: "material-icons mdc-top-app-bar__action-item mdc-icon-button" %>
         </section>
       </div>
     </header>

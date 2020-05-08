@@ -14,7 +14,8 @@ done
 set -e
 
 echo "\nInstalling mix dependencies..."
-mix do deps.get, deps.compile
+mix do deps.get
+# mix do deps.get, deps.compile
 
 echo "\nInstalling Node dependencies..."
 cd assets && npm install

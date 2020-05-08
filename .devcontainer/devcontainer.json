@@ -1,15 +1,18 @@
 {
   "name": "rdf test dev container",
-  "dockerComposeFile": ["../docker-compose.yml", "docker-compose.yml"],
+  "dockerComposeFile": [
+    "../docker-compose.yml",
+    "docker-compose.yml"
+  ],
   "service": "web",
   "workspaceFolder": "/app",
   // Set *default* container specific settings.json values on container create.
   "settings": {
     "terminal.integrated.shell.linux": null
-  }
-  // "extensions": [
-  //   "iampeterbanjo.elixirlinter",
-  //   "jakebecker.elixir-ls",
-  //   "sammkj.vscode-elixir-formatter"
-  // ]
+  },
+  "extensions": [
+    "iampeterbanjo.elixirlinter",
+    "jakebecker.elixir-ls",
+    "sammkj.vscode-elixir-formatter"
+  ]
 }
