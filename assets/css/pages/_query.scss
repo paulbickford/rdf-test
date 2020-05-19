@@ -1,0 +1,57 @@
+@use '~@material/theme';
+
+@use '~@material/data-table/mdc-data-table';
+@use '~@material/data-table/mixins' as data-table;
+
+.query-page {
+  position: relative;
+  height: 100%;
+}
+
+.query-table {
+  width: 100%;
+  @include data-table.fill-color(theme.$background);
+  @include data-table.divider-color(transparent);
+  @include data-table.stroke-color(transparent);
+  
+  &__cell-header {
+    font-size: 1rem;
+  }
+  
+  &__cell {
+    font-size: 1.5rem;
+  }
+  
+  &__cell-first {
+    width: 25em;
+  }
+  
+  &__cell-last {
+    width: 20rem;
+  }
+}
+
+.query-form {
+
+  &__name {
+    border: none;
+    background-color: transparent;
+  }
+
+  &__textarea {
+    height: 40vh;
+    width: 100%;
+    resize: none;
+  }
+
+  &__actions {
+    width: 100%;
+    text-align: right;
+  }
+
+  &__action-button {
+    margin-left: 2rem;
+  }
+}
+
+

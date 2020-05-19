@@ -1,28 +1,34 @@
-<h1>Listing Queries</h1>
+<div class="query-page">
+  <h1>Queries</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Query</th>
+  <div class="mdc-data-table">
+    <table class="mdc-data-table__table query-table">
+      <thead>
+        <tr class="mdc-data-table__header-row">
+          <th class="mdc-data-table__header-cell query-table__cell-header query-table__cell-first" role="columnheader" scope="col">Name</th>
+          <th class="mdc-data-table__header-cell query-table__cell-header" role="columnheader" scope="col">Query</th>
+          <th class="mdc-data-table__header-cell query-table__cell-last" role="columnheader" scope="col"></th>
+        </tr>
+      </thead>
+      <tbody class="mdc-data-table__content">
+        <%= for query <- @queries do %>
+        <tr class="mdc-data-table__row">
+          <td class="mdc-data-table__cell query-table__cell query-table__cell-first"><%= query.name %></td>
+          <td class="mdc-data-table__cell query-table__cell"><%= query.query %></td>
+          <td class="mdc-data-table__cell query-table__cell-last">
+            <span><%= link "create", to: Routes.query_path(@conn, :edit, query), class: "material-icons mdc-icon-button"%></span>
+            <span><%= link "delete", to: Routes.query_path(@conn, :delete, query), method: :delete, data: [confirm: "Are you sure?"], class: "material-icons mdc-icon-button" %></span>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for query <- @queries do %>
-    <tr>
-      <td><%= query.name %></td>
-      <td><%= query.query %></td>
+<div class="fab fab__right">
+  <div class="mdc-fab__ripple">
+    <%= link "add", to: Routes.query_path(@conn, :new), class: "mdc-fab mdc-fab__icon material-icons" %>
+  </div>
+</div>
 
-      <td>
-        <span><%= link "Show", to: Routes.query_path(@conn, :show, query) %></span>
-        <span><%= link "Edit", to: Routes.query_path(@conn, :edit, query) %></span>
-        <span><%= link "Delete", to: Routes.query_path(@conn, :delete, query), method: :delete, data: [confirm: "Are you sure?"] %></span>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<span><%= link "New Query", to: Routes.query_path(@conn, :new) %></span>
+</div>

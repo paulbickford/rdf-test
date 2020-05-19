@@ -1,5 +1,7 @@
+@use '../abstracts/variables' as var;
+
 body {
-  font-size: 1.6rem;
+  font-size: var.$default-font-size;
   font-weight: 400;
   line-height: 1.7;
   color: #777;
