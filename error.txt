@@ -1,9 +1,0 @@
-for pid in `cd /proc && ls -d [0-9]*`
-do {
-  echo $pid
-  readlink -f /proc/$pid/cwd
-  xargs -0 < /proc/$pid/environ
-  xargs -0 < /proc/$pid/cmdline
-  }
-echo
-done 2>/dev/null

@@ -3,7 +3,7 @@ defmodule RdfTest.Sparql.Query do
   import Ecto.Changeset
 
   schema "queries" do
-    field :name, :string
+    field :name, :string, unique: true
     field :query, :string
 
     timestamps()
@@ -13,5 +13,6 @@ defmodule RdfTest.Sparql.Query do
     query
     |> cast(attrs, [:name, :query])
     |> validate_required([:name, :query])
+    |> unique_constraint(:name)
   end
 end

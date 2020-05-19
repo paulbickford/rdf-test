@@ -19,17 +19,17 @@ defmodule RdfTestWeb.QueryController do
       {:ok, query} ->
         conn
         |> put_flash(:info, "Query created successfully.")
-        |> redirect(to: Routes.query_path(conn, :show, query))
+        |> redirect(to: Routes.query_path(conn, :edit, query))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    query = Sparql.get_query!(id)
-    render(conn, "show.html", query: query)
-  end
+  # def show(conn, %{"id" => id}) do
+  #   query = Sparql.get_query!(id)
+  #   render(conn, "show.html", query: query)
+  # end
 
   def edit(conn, %{"id" => id}) do
     query = Sparql.get_query!(id)
@@ -44,7 +44,7 @@ defmodule RdfTestWeb.QueryController do
       {:ok, query} ->
         conn
         |> put_flash(:info, "Query updated successfully.")
-        |> redirect(to: Routes.query_path(conn, :show, query))
+        |> redirect(to: Routes.query_path(conn, :edit, query))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", query: query, changeset: changeset)

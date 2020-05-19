@@ -1,5 +1,6 @@
-<h1>Edit Query</h1>
 
-<%= render "form.html", Map.put(assigns, :action, Routes.query_path(@conn, :update, @query)) %>
+<div class="query-page">
+  <h1>Query</h1>
 
-<span><%= link "Back", to: Routes.query_path(@conn, :index) %></span>
+  <%= render "form.html", Map.put(assigns, :action, Routes.query_path(@conn, :update, @query)) %>
+</div>

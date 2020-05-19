@@ -19,6 +19,7 @@ import 'phoenix_html';
 
 import { MDCRipple } from '@material/ripple';
 import { MDCTopAppBar } from '@material/top-app-bar';
+import { MDCDataTable } from '@material/data-table';
 
 
 MDCRipple.attachTo(document.querySelector('.navlink'));
@@ -31,3 +32,5 @@ topAppBar.listen('MDCTopAppBar:nav', () => {
 
 const iconButtonRipple = MDCRipple(document.querySelector('.mdc-icon-button'));
 iconButtonRipple.unbound = true;
+
+const dataTable = new MDCDataTable(document.querySelector('.mdc-data-table'))

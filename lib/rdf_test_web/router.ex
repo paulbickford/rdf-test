@@ -22,7 +22,7 @@ defmodule RdfTestWeb.Router do
   scope "/queries", RdfTestWeb do
     pipe_through :browser
 
-    resources "/queries", QueryController
+    resources "/queries", QueryController, except: [:show]
   end
 
   # Other scopes may use custom stacks.

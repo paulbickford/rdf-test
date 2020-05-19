@@ -2,5 +2,9 @@
 
 @use 'base/body';
 @use 'base/typography';
+
+@use 'components/fab';
+
 @use 'layout/header';
-@use 'pages/main';
+
+@use 'pages/query';
