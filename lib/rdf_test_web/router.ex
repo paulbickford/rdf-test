@@ -17,12 +17,10 @@ defmodule RdfTestWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-  end
 
-  scope "/queries", RdfTestWeb do
-    pipe_through :browser
-
-    resources "/queries", QueryController, except: [:show]
+    resources "/queries", QueryController, except: [:show] do
+      resources "/resources", ResourceController, only: [:create, :delete, :update]
+    end
   end
 
   # Other scopes may use custom stacks.

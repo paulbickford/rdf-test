@@ -1,7 +1,7 @@
 <div class="query-form">
   <%= form_for @changeset, @action, fn f -> %>
     <%= if @changeset.action do %>
-      <div class="alert alert-danger">
+      <div>
         <p>Oops, something went wrong! Please check the errors below.</p>
       </div>
     <% end %>

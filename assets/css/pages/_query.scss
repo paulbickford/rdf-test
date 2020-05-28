@@ -10,29 +10,42 @@
 
 .query-table {
   width: 100%;
-  @include data-table.fill-color(theme.$background);
+  @include data-table.fill-color(white);
   @include data-table.divider-color(transparent);
   @include data-table.stroke-color(transparent);
-  
+
   &__cell-header {
     font-size: 1rem;
   }
-  
+
   &__cell {
     font-size: 1.5rem;
   }
-  
+
   &__cell-first {
     width: 25em;
   }
-  
+
   &__cell-last {
     width: 20rem;
   }
 }
 
-.query-form {
+.query-edit {
+  display: table;
 
+  &__left {
+    width: 40em;
+    display: table-cell;
+  }
+
+  &__right {
+    width: 34%;
+    display: table-cell;
+  }
+}
+
+.query-form {
   &__name {
     border: none;
     background-color: transparent;
@@ -41,6 +54,8 @@
   &__textarea {
     height: 40vh;
     width: 100%;
+    padding: 0 1rem;
+    border-width: 0;
     resize: none;
   }
 
@@ -53,5 +68,4 @@
     margin-left: 2rem;
   }
 }
-
 

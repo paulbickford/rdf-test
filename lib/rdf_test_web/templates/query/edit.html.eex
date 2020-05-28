@@ -2,5 +2,21 @@
 <div class="query-page">
   <h1>Query</h1>
 
-  <%= render "form.html", Map.put(assigns, :action, Routes.query_path(@conn, :update, @query)) %>
+  <div class="query-edit">
+    <div class="query-edit__left">
+      <%= render "form.html", Map.put(assigns, :action, Routes.query_path(@conn, :update, @query)) %>
+    </div>
+
+    <div class="query-edit__right">
+      <%= render RdfTestWeb.ResourceView, "index.html", add_resource_form_values_to_assigns(assigns, @resources, @query) %>
+    </div>
+  </div>
+
+
 </div>
+
+
+
+
+
+

@@ -1,5 +1,8 @@
 @use 'themes/rdf-theme';
 
+@use 'abstracts/utilities';
+@use 'abstracts/variables';
+
 @use 'base/body';
 @use 'base/typography';
 
@@ -8,3 +11,4 @@
 @use 'layout/header';
 
 @use 'pages/query';
+@use 'pages/resource';

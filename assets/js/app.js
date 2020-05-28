@@ -21,7 +21,6 @@ import { MDCRipple } from '@material/ripple';
 import { MDCTopAppBar } from '@material/top-app-bar';
 import { MDCDataTable } from '@material/data-table';
 
-
 MDCRipple.attachTo(document.querySelector('.navlink'));
 
 const topAppBar = MDCTopAppBar.attachTo(document.getElementById('app-bar'));
@@ -33,4 +32,14 @@ topAppBar.listen('MDCTopAppBar:nav', () => {
 const iconButtonRipple = MDCRipple(document.querySelector('.mdc-icon-button'));
 iconButtonRipple.unbound = true;
 
-const dataTable = new MDCDataTable(document.querySelector('.mdc-data-table'))
+const dataTable = new MDCDataTable(document.querySelector('.mdc-data-table'));
+
+// Select list item
+// document.querySelector('ul').addEventListener('click', function (e) {
+//   let selected;
+//   if (e.target.tagName === 'LI') {
+//     selected = document.querySelector('li.selected');
+//     if (selected) selected.className = '';
+//     e.target.className = 'selected';
+//   }
+// });

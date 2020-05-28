@@ -3,6 +3,13 @@ defmodule RdfTestWeb.QueryController do
 
   alias RdfTest.Sparql
   alias RdfTest.Sparql.Query
+  alias RdfTest.Sparql.Resource
+
+  plug :load_resources when action in [:create, :new, :create, :edit, :update]
+
+  defp load_resources(conn, _) do
+    assign(conn, :resources, Sparql.list_sorted_resources())
+  end
 
   def index(conn, _params) do
     queries = Sparql.list_queries()
@@ -26,15 +33,14 @@ defmodule RdfTestWeb.QueryController do
     end
   end
 
-  # def show(conn, %{"id" => id}) do
-  #   query = Sparql.get_query!(id)
-  #   render(conn, "show.html", query: query)
-  # end
-
   def edit(conn, %{"id" => id}) do
     query = Sparql.get_query!(id)
     changeset = Sparql.change_query(query)
-    render(conn, "edit.html", query: query, changeset: changeset)
+
+    render(conn, "edit.html",
+      query: query,
+      changeset: changeset
+    )
   end
 
   def update(conn, %{"id" => id, "query" => query_params}) do
