@@ -21,6 +21,7 @@ defmodule RdfTestWeb do
     quote do
       use Phoenix.Controller, namespace: RdfTestWeb
 
+      import Phoenix.LiveView.Controller
       import Plug.Conn
       import RdfTestWeb.Gettext
       alias RdfTestWeb.Router.Helpers, as: Routes
@@ -34,10 +35,43 @@ defmodule RdfTestWeb do
         namespace: RdfTestWeb
 
       # Import convenience functions from controllers
-      import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
+      import Phoenix.Controller,
+        only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
 
+      # Include shared imports and aliases for views
+      unquote(view_helpers())
+    end
+  end
+
+  def live_view do
+    quote do
+      use Phoenix.LiveView,
+        layout: {RdfTestWeb.LayoutView, "live.html"}
+
+      unquote(view_helpers())
+    end
+  end
+
+  def live_component do
+    quote do
+      use Phoenix.LiveComponent
+
+      unquote(view_helpers())
+    end
+  end
+
+  defp view_helpers do
+    quote do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
+
+      # Import LiveView helpers, e.g. live_render,
+      # live_component, live_patch, ...
+      import Phoenix.LiveView.Helpers
+
+      # Import basic rendering functionality, e.g.
+      # render, render_layout, ...
+      import Phoenix.View
 
       import RdfTestWeb.ErrorHelpers
       import RdfTestWeb.Gettext
@@ -50,6 +84,7 @@ defmodule RdfTestWeb do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
   end
 

@@ -15,7 +15,7 @@ config :rdf_test, RdfTestWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "uZLkPUu+SdnbMhSoSwpJOY+c/CDNqbRBJWeF129JTx9JGII5IsG/I4UhRfNHIq1P",
   render_errors: [view: RdfTestWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: RdfTest.PubSub, adapter: Phoenix.PubSub.PG2],
+  pubsub_server: RdfTest.PubSub,
   live_view: [signing_salt: "mO80ZcTs"]
 
 # Configures Elixir's Logger

@@ -11,7 +11,8 @@ defmodule RdfTest.Application do
       # Start the Ecto repository
       RdfTest.Repo,
       # Start the endpoint when the application starts
-      RdfTestWeb.Endpoint
+      RdfTestWeb.Endpoint,
+      {Phoenix.PubSub, [name: RdfTest.PubSub, adapter: Phoenix.PubSub.PG2]}
       # Starts a worker by calling: RdfTest.Worker.start_link(arg)
       # {RdfTest.Worker, arg},
     ]
