@@ -19,9 +19,21 @@ defmodule RdfTestWeb.Router do
 
     get "/", PageController, :index
 
-    resources "/queries", QueryController, except: [:show] do
-      resources "/resources", ResourceController, only: [:create, :delete, :update]
-    end
+    live "/queries", QueryLive.Index
+    live "/queries/:id/edit", QueryLive.Edit
+    live "/queries/new", QueryLive.New
+    live "/queries/:id", QueryLive.Update
+
+    # live "/queries", QueryLive.Index, :index
+    # live "/queries/:id/edit", QueryLive.Edit, :edit
+    # live "/queries/new", QueryLive.New, :new
+    # live "/queries", QueryLive.Create, :create
+    # live "/queries/:id", QueryLive.Update, :update
+    # live "/queries/:id", QueryLive.Delete, :delete
+
+    # resources "/queries", QueryController, except: [:show] do
+    #   resources "/resources", ResourceController, only: [:create, :delete, :update]
+    # end
   end
 
   # Other scopes may use custom stacks.

@@ -11,6 +11,18 @@
   <title><%= assigns[:page_title] || "RdfTest · Phoenix Framework" %></title>
 </head>
   <body>
+    <header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="app-bar">
+      <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+          <span class="mdc-top-app-bar__title header-title">RDF / SPARQL App</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+          <%= link "home", to: Routes.page_path(@conn, :index), class: "material-icons mdc-top-app-bar__action-item mdc-icon-button" %>
+          <%= link "view_list", to: Routes.live_path(@conn, RdfTestWeb.QueryLive.Index), class: "material-icons mdc-top-app-bar__action-item mdc-icon-button" %>
+        </section>
+      </div>
+    </header>
+
     <%= @inner_content %>
   </body>
 </html>

@@ -1,19 +1,8 @@
-<header class="mdc-top-app-bar mdc-top-app-bar--fixed" id="app-bar">
-  <div class="mdc-top-app-bar__row">
-    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-      <span class="mdc-top-app-bar__title header-title">RDF / SPARQL Test App</span>
-    </section>
-    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
-      <%= link "home", to: Routes.page_path(@conn, :index), class: "material-icons mdc-top-app-bar__action-item mdc-icon-button" %>
-      <%= link "view_list", to: Routes.query_path(@conn, :index), class: "material-icons mdc-top-app-bar__action-item mdc-icon-button" %>
-    </section>
-  </div>
-</header>
-
 <main role="main" class="mdc-top-app-bar--fixed-adjust" id="main-content">
   <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
   <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
   <div class="main-page">
-    <%= @inner_content %>
+    Regular view
+    <%= render @view_module, @view_template, assigns %>
   </div>
 </main>

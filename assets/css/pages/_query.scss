@@ -32,7 +32,7 @@
 }
 
 .query-edit {
-  display: table;
+  // display: table;
 
   &__left {
     width: 40em;
@@ -47,6 +47,8 @@
 
 .query-form {
   &__name {
+    font-size: 1.5em;
+    height: 2em;
     border: none;
     background-color: transparent;
   }

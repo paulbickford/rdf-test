@@ -1,0 +1,16 @@
+<div class="query-page">
+  <h1>Query</h1>
+
+  <div class="query-edit">
+    <div class="query-edit__left">
+      <div class="query-form">
+        <%= live_component @socket, QueryLive.Form, assigns %>
+      </div>
+    </div>
+    <div class="query-edit__right">
+      <div class="resource-list">
+        <%= live_component @socket, ResourceLive.Index, id: "resources" %>
+      </div>
+    </div>
+  </div>
+</div>

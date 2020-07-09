@@ -1,20 +1,13 @@
 # RdfTest
 
-To start your Phoenix server:
+A (work in progress) app to create and mess around with RDF and SPARQL.
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+This Elixir/Phoenix app is designed to run in a Docker container.
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+It is also set up to be developed in VSCode running inside a Docker container.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+  * Install VSCode Remote Development extension.
+  * Place Postgres password in a file /.docker/secrets/pg_password.txt
+  * Open VSCode Command Palette and run
+    `Remote-Containers: Open Folder in Container`
 
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix

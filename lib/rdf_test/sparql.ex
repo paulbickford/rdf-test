@@ -11,8 +11,8 @@ defmodule RdfTest.Sparql do
     Repo.all(Query)
   end
 
-  def change_query(%Query{} = query) do
-    Query.changeset(query, %{})
+  def change_query(%Query{} = query, attrs \\ %{}) do
+    Query.changeset(query, attrs)
   end
 
   def create_query(attrs \\ %{}) do
@@ -46,8 +46,8 @@ defmodule RdfTest.Sparql do
     |> Repo.all()
   end
 
-  def change_resource(%Resource{} = resource) do
-    Resource.changeset(resource, %{})
+  def change_resource(%Resource{} = resource, attr \\ %{}) do
+    Resource.changeset(resource, attr)
   end
 
   def create_resource(attrs \\ %{}) do

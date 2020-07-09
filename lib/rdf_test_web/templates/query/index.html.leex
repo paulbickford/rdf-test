@@ -1,6 +1,9 @@
 <div class="query-page">
   <h1>Queries</h1>
-
+  <div phx-click="lv:clear-flash">
+    <p><%= live_flash(@flash, :info) %></p>
+    <p><%= live_flash(@flash, :error) %></p>
+  </div>
   <div class="mdc-data-table">
     <table class="mdc-data-table__table query-table">
       <thead>
@@ -16,8 +19,8 @@
           <td class="mdc-data-table__cell query-table__cell query-table__cell-first"><%= query.name %></td>
           <td class="mdc-data-table__cell query-table__cell"><%= query.query %></td>
           <td class="mdc-data-table__cell query-table__cell-last">
-            <span><%= link "create", to: Routes.query_path(@conn, :edit, query), class: "material-icons mdc-icon-button"%></span>
-            <span><%= link "delete", to: Routes.query_path(@conn, :delete, query), method: :delete, data: [confirm: "Are you sure?"], class: "material-icons mdc-icon-button" %></span>
+            <span><%= live_redirect "create", to: Routes.live_path(@socket, QueryLive.Edit, query.id), class: "material-icons mdc-icon-button"%></span>
+            <span><button phx-click="delete_query" phx-value-id="<%= query.id %>" class="material-icons mdc-icon-button">delete</button></span>
           </td>
         </tr>
         <% end %>
@@ -27,7 +30,7 @@
 
 <div class="fab fab__right">
   <div class="mdc-fab__ripple">
-    <%= link "add", to: Routes.query_path(@conn, :new), class: "mdc-fab mdc-fab__icon material-icons" %>
+    <%= live_redirect "add", to: Routes.live_path(@socket, QueryLive.New), class: "mdc-fab mdc-fab__icon material-icons" %>
   </div>
 </div>
 
