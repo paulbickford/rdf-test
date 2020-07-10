@@ -6,6 +6,9 @@ services:
 
     # Overrides default command so things don't shut down after the process ends.
     command: .docker/app/run.sh -d
+    # Add port for LogViewer
+    ports:
+      - 5900:5900
 
   adminer:
     image: adminer
