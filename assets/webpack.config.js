@@ -36,7 +36,7 @@ module.exports = (env, options) => ({
           {
             loader: 'file-loader',
             options: {
-              name: '../css/mdc.css'
+              name: '../css/app.css'
             }
           },
           { loader: 'extract-loader' },

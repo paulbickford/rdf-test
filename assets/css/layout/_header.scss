@@ -1,18 +1,22 @@
-@use '~@material/theme';
-
-@use '~@material/ripple/index';
-@use '~@material/top-app-bar/mdc-top-app-bar';
-@use '~@material/icon-button/mdc-icon-button';
-
 @use '../abstracts/variables' as var;
+@use '../themes/default-theme' as theme;
 
+.header-bar {
+  display: flex;
+  align-items: center;
+  height: 10vh;
+  padding-left: var.$page-padding-horizontal;
+  padding-right: var.$page-padding-horizontal;
+  background-color: theme.$color-primary;
+}
 .header-title {
   font-size: 2rem;
+  color: theme.$color-white;
 }
 
 .main-page {
   position: relative;
-  height: 85vh;
-  background-color: theme.$background;
-  padding: var.$page-padding-vertical var.$page-padding-horizontal;
+  height: 90vh;
+  background-color: theme.$color-secondary;
+  padding: var.$page-padding-vertical var.$page-padding-horizontal 0 var.$page-padding-horizontal;
 }

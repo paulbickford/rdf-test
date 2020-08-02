@@ -1,17 +1,20 @@
 // Style for nprogress
 @use "../node_modules/nprogress/nprogress.css";
 
-@use 'themes/rdf-theme';
-
+@use 'abstracts/mixins';
 @use 'abstracts/utilities';
 @use 'abstracts/variables';
 
 @use 'base/body';
 @use 'base/typography';
 
-@use 'components/fab';
+@use 'components/buttons';
+@use 'components/icons';
 
 @use 'layout/header';
 
+@use 'pages/queries';
 @use 'pages/query';
-@use 'pages/resource';
+@use 'pages/resources';
+
+@use 'themes/default-theme';

@@ -1,24 +1,23 @@
-<span>
+ <div class="resources-list__row">
   <%= f = form_for @changeset,
     "#",
     [phx_change: :validate,
       phx_submit: :save,
       phx_target: "#resources",
-      class: "resource-form"] %>
+      class: "resources-list__form"] %>
 
-    <%= text_input f, :prefix, id: "resource_prefix_#{@resource_id}", class: "resource-list__item-prefix" %>
-    <%= text_input f, :iri, id: "resource_iri_#{@resource_id}", class: "resource-list__item-iri" %>
+    <%= text_input f, :prefix, id: "resource_prefix_#{@resource_id}", class: "resources-list__item resources-list__item-prefix", placeholder: "prefix" %>
+    <%= text_input f, :iri, id: "resource_iri_#{@resource_id}", class: "resources-list__item resources-list__item-iri", placeholder: "IRI" %>
     <%= hidden_input f, :resource_id, id: "resource_id_#{@resource_id}", value: @resource_id %>
-
-    <%= submit "save", class: "mdc-icon-button material-icons resource-list__action-button resource-list__item-actions" %>
+    <%= submit "save", class: "material-icons button-row-action-icon resources-list__item resources-list__item-save" %>
   </form>
 
   <button
     phx-click="delete_resource"
     phx-value-id="<%= @resource_id %>"
     phx-target="#resources"
-    class="material-icons mdc-icon-button resource-list__item-actions"
+    class="material-icons button-row-action-icon resources-list_item resources-list__item-delete"
   >
     delete
   </button>
-</span>
+</div>

@@ -15,16 +15,17 @@ import { Socket } from 'phoenix';
 import LiveSocket from 'phoenix_live_view';
 import NProgress from 'nprogress';
 
+
 // Import local files
 //
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
+import PopupButtonHooks from './button-popup';
 
-// Import Material Design components
-//
-import { MDCRipple } from '@material/ripple';
-import { MDCTopAppBar } from '@material/top-app-bar';
-import { MDCDataTable } from '@material/data-table';
+// Set up Hooks
+// 
+let Hooks = {};
+Hooks = { ...Hooks, ...PopupButtonHooks };
 
 // Set up LiveSocket
 //
@@ -32,7 +33,7 @@ let csrfToken = document
   .querySelector("meta[name='csrf-token']")
   .getAttribute('content');
 let liveSocket = new LiveSocket('/live', Socket, {
-  params: { _csrf_token: csrfToken },
+  params: { _csrf_token: csrfToken }, hooks: Hooks
 });
 
 // Show progress bar on live navigation and form submits
@@ -50,27 +51,3 @@ liveSocket.connect();
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket;
 
-// Set up Material Design components
-//
-MDCRipple.attachTo(document.querySelector('.navlink'));
-
-const topAppBar = MDCTopAppBar.attachTo(document.getElementById('app-bar'));
-topAppBar.setScrollTarget(document.getElementById('main-content'));
-topAppBar.listen('MDCTopAppBar:nav', () => {
-  drawer.open = !drawer.open;
-});
-
-const iconButtonRipple = MDCRipple(document.querySelector('.mdc-icon-button'));
-iconButtonRipple.unbound = true;
-
-const dataTable = new MDCDataTable(document.querySelector('.mdc-data-table'));
-
-// Select list item
-// document.querySelector('ul').addEventListener('click', function (e) {
-//   let selected;
-//   if (e.target.tagName === 'LI') {
-//     selected = document.querySelector('li.selected');
-//     if (selected) selected.className = '';
-//     e.target.className = 'selected';
-//   }
-// });

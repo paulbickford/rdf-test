@@ -1,5 +1,13 @@
 <div class="query-page">
-  <h1>Query</h1>
+  <div class="resources" phx-hook="resourcesPopupButton">
+    <input type="checkbox" class="resources__checkbox" id="resources-toggle">
+    <label for="resources-toggle" class="resources__button-popup" id="resources-button-popup">
+      <span class="resources__button-popup-text">resources</span>
+    </label>
+    <div class="resources__content">
+      <%= live_component @socket, ResourceLive.Index, id: "resources" %>
+    </div>
+  </div>
 
   <div class="query-edit">
     <div class="query-edit__left">
@@ -8,9 +16,16 @@
       </div>
     </div>
     <div class="query-edit__right">
-      <div class="resource-list">
-        <%= live_component @socket, ResourceLive.Index, id: "resources" %>
+      <div class="query-results">
+        <div class="query-results__title">
+          Results
+        </div>
+        <div class="query-results__text">Results text</div>
       </div>
     </div>
+  </div>
+
+  <div class="button-round button-round__left-bottom">
+    <%= live_patch "arrow_back", to: Routes.live_path(@socket, QueryLive.Index), class: "button-round__link material-icons" %>
   </div>
 </div>

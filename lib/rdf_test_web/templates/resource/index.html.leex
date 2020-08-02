@@ -1,19 +1,18 @@
 <div class="resources" id="resources">
-  <h2 class="resources-title">Resources</h2>
-    <ul class="resource-list">
-      <div phx-click="lv:clear-flash">
-        <p><%= live_flash(@flash, :info) %></p>
-        <p><%= live_flash(@flash, :error) %></p>
-      </div>
-      <%= for resource <- @resources do %>
-        <li class="resource-list__item">
-          <%= live_component @socket, ResourceLive.Form, resource_id: resource.id %>
-        </li>
-      <% end %>
-
-      <li class="resource-list__item">
-          <%= live_component @socket, ResourceLive.Form, resource_id: "new" %>
+  <h2 class="resources__title">Resources</h2>
+  <ul class="resources-list">
+    <div phx-click="lv:clear-flash">
+      <p><%= live_flash(@flash, :info) %></p>
+      <p><%= live_flash(@flash, :error) %></p>
+    </div>
+    <%= for resource <- @resources do %>
+      <li class="resources-list__list-item">
+        <%= live_component @socket, ResourceLive.Form, resource_id: resource.id %>
       </li>
-    </ul>
-  </div>
+    <% end %>
+
+    <li class="resources-list__list-item">
+        <%= live_component @socket, ResourceLive.Form, resource_id: "new" %>
+    </li>
+  </ul>
 </div>

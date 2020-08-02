@@ -1,0 +1,80 @@
+@use '../abstracts/mixins' as mixin;
+@use '../abstracts/variables' as var;
+@use '../themes/default-theme' as theme;
+
+.queries-page {
+  position: relative;
+  height: 100%;
+}
+
+.queries-list {
+  width: 100%;
+  border-radius: var.$radius-sheet;
+  background-color: theme.$color-background;
+  padding: 2rem 2rem;
+  @include mixin.shadow(1);
+  
+  &__content {
+    border: solid 2px theme.$color-primary;
+    border-radius: var.$radius-sheet;
+  }
+
+  &__list-item {
+    display: list-item;
+    list-style: none;
+
+    :hover, :focus {
+      background-color: theme.$color-background-highlight;
+    }
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+
+    :hover, :focus {
+      background-color: transparent;
+    }
+  }
+
+  &__row-header {
+    padding-bottom: 1.5rem;
+  }
+
+  &__item {
+    padding: 0 1rem;
+  }
+
+  &__header {
+    text-decoration: underline;
+    font-size: 1.2em;
+  }
+
+  &__name {
+    flex-basis: 20rem;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  &__query {
+    flex-basis: 50rem;
+    flex-grow: 2;
+    flex-shrink: 2;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  &__actions {
+    flex-basis: 8.5rem;
+    flex-grow: 0;
+    flex-shrink: 0;
+    visibility: hidden;
+    cursor: default;
+  }
+
+  &__list-item:hover &__actions,
+  &__list-item:focus &__actions {
+    visibility: visible;
+  }
+}

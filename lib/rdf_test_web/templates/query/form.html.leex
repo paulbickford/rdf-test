@@ -10,18 +10,13 @@
     <%= text_input f, :name, phx_debounce: "blur", class: "query-form__name" %>
     <%= error_tag f, :name %>
 
-    <%= textarea f, :query, phx_debounce: 500, class: "query-form__textarea" %>
+    <%= textarea f, :query, phx_debounce: 500, class: "query-form__textarea", wrap: "off" %>
     <%= error_tag f, :query %>
 
     <div class="query-form__actions">
-      <button class="mdc-icon-button material-icons query-form__action-button">rowing</button>
-      <%= submit "save", class: "mdc-icon-button material-icons query-form__action-button" %>
+      <button class="button-form">run</button>
+      <%= submit "save", class: "button-form" %>
     </div>
   </form>
 
-  <div class="fab fab__left">
-    <div class="mdc-fab__ripple">
-      <%= live_patch "arrow_back", to: Routes.live_path(@socket, QueryLive.Index), class: "mdc-fab mdc-fab__icon material-icons" %>
-    </div>
-  </div>
 </div>
