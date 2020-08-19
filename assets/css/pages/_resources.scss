@@ -1,13 +1,9 @@
-@use '../components/buttons' as button;
 @use '../abstracts/mixins' as mixin;
+@use '../components/buttons' as button;
 @use '../themes/default-theme' as theme;
 
 .resources {
   display: block;
-
-  &__checkbox {
-    display: none;
-  }
   
   @include button.button-popup;
 
@@ -30,10 +26,10 @@
     opacity: 1;
     transform-origin: top right;
     transform: scale(0%);
-    transition: all 1s ease-in;
+    transition: all button.$time-button-popup ease-in;
   }
   
-  &__checkbox:checked ~ &__content {
+  &__button-checkbox:checked ~ &__content {
     opacity: 1;
     transform: scale(100%);
   }

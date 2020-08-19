@@ -26,8 +26,25 @@
     </ul>
   </div>
 
-  <div class="button-round button-round__right-bottom">
-      <%= live_redirect "add", to: Routes.live_path(@socket, QueryLive.New), class: "button-round__link material-icons" %>
+  <div class="queries-add">
+    <input type="checkbox" class="queries-add__button-checkbox" id="queries-add-toggle">
+    <label for="queries-add-toggle" class="queries-add__button-round queries-add__button-round--right-bottom">
+      <span class="queries-add__button-round-icon">&nbsp;</span>
+    </label>
+    <div class="queries-add__background">&nbsp;</div>
+    <div class="queries-add__form">
+      <form phx-submit="add_query" phx-change="validate_query">
+        <input
+          type="text"
+          class="queries-add__form-name"
+          placeholder="Enter query name"
+          name="name">
+        <button type="submit" class="queries-add__form-submit button-form">
+          submit
+        </button>
+      </form>
+    </div>
   </div>
+
 
 </div>

@@ -10,11 +10,16 @@ defmodule RdfTestWeb.QueryLive.Edit do
     QueryView.render("edit.html", assigns)
   end
 
-  def mount(%{"id" => id}, _session, socket) do
+  def mount(_params, _session, socket) do
+    {:ok, socket}
+  end
+
+  def handle_params(%{"id" => id}, _session, socket) do
+    id = String.to_integer(id)
     query = Sparql.get_query!(id)
     changeset = Sparql.change_query(query)
     socket = assign(socket, query: query, changeset: changeset)
-    {:ok, socket}
+    {:noreply, socket}
   end
 
   def handle_event("validate", %{"query" => params}, socket) do

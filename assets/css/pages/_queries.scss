@@ -1,5 +1,6 @@
 @use '../abstracts/mixins' as mixin;
 @use '../abstracts/variables' as var;
+@use '../components/buttons' as button;
 @use '../themes/default-theme' as theme;
 
 .queries-page {
@@ -77,4 +78,72 @@
   &__list-item:focus &__actions {
     visibility: visible;
   }
+}
+
+.queries-add {
+
+  @include button.button-popup-round;
+
+  &__background {
+    right: button.$right-button-round;
+    bottom: button.$bottom-button-round;
+    height: button.$diameter-button-round;
+    width: button.$diameter-button-round;
+    border-radius: 50%;
+    position: fixed; // Prevents scroll bars
+    background-image: radial-gradient(
+      rgba(theme.$color-primary, 0.5),
+      rgba(theme.$color-primary, 0.2)
+      );
+    z-index: 100;
+    
+    transition: transform button.$time-button-popup-round cubic-bezier(0.83, 0, 0.17, 1);
+  }
+  
+  &__form {
+    display: flex;
+    align-content: stretch;
+    position: fixed;
+    right: button.$right-button-round;
+    bottom: button.$bottom-button-round;
+    height: button.$diameter-button-round;
+    width: 40em;
+    padding: 2rem;
+    background-color: white;
+    overflow: hidden;
+    z-index: 110;
+    @include mixin.shadow(1);
+    
+    opacity: 0;
+    transform-origin: right;
+    transform: scale(0%);
+    transition: all button.$time-button-popup-round ease-in;
+  }
+
+  &__form-name {
+    width: 22em;
+    height: 1.2em;
+    border: none;
+    font-size: 1.2em;
+
+    &::placeholder {
+      color: theme.$color-primary;
+    }
+  }
+
+  &__form-submit {
+    text-decoration: none;
+    color: theme.$color-white;
+  }
+  
+  &__button-checkbox:checked ~ &__background {
+    opacity: 1;
+  transform: scale(80);
+  }
+  
+  &__button-checkbox:checked ~ &__form {
+    opacity: 1;
+    transform: scale(100%);
+  }
+
 }

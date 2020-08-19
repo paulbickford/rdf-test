@@ -2,33 +2,13 @@
 @use '../abstracts/variables' as var;
 @use '../themes/default-theme' as theme;
 
-.button-round {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  height: 6rem;
-  width: 6rem;
-  border-radius: 50%;
-  background-color: theme.$color-primary;
-  @include mixin.shadow(2);
-  
-  &__left-bottom {
-    left: 0;
-    bottom: 5rem;
-  }
-  
-  &__right-bottom {
-    right: 0;
-    bottom: 5rem;
-  }
-  
-  &__link {
-    text-decoration: none;
-    font-size: 3em;
-    color: black;
-  }
-}
+$time-button-popup: 0.5s;
+$time-button-popup-round: 0.2s;
+
+$diameter-button-round: 6rem;
+$left-button-round: var.$page-padding-horizontal;
+$right-button-round: var.$page-padding-horizontal;
+$bottom-button-round: 5rem;
 
 .button-form {
   padding-left: 2rem;
@@ -51,6 +31,88 @@
   background-color: transparent;
 }
 
+@mixin button-round {
+  &__button-round {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    height: $diameter-button-round;
+    width: $diameter-button-round;
+    border-radius: 50%;
+    background-color: theme.$color-primary;
+    cursor: pointer;
+    @include mixin.shadow(2);
+    
+    &--left-bottom {
+      left: $left-button-round;
+      bottom: 5rem;
+    }
+    
+    &--right-bottom {
+      right: $right-button-round;
+      bottom: 5rem;
+    }
+    
+    &__link {
+      text-decoration: none;
+      font-size: 3em;
+      color: black;
+    }
+  }
+
+  &__button-checkbox {
+    display: none;
+  }
+}
+@mixin button-popup-round {
+
+  @include button-round;
+
+  &__button-round {
+    z-index: 120;
+    text-align: center;
+
+    transform: scale(1);
+    transition: all $time-button-popup-round ease-in;
+  }
+
+  &__button-checkbox {
+    display: none;
+  }
+
+  &__button-round-icon {
+    position: relative;
+    
+    &,
+    &::after {
+      display: inline-block;
+      height: 2.8rem;
+      width: 2px;
+      background-color: theme.$color-dark-gray;
+      transition: all $time-button-popup-round ease-in;
+    }
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      transform: rotate(90deg);
+    }
+  }
+
+  &__button-checkbox:checked + &__button-round {
+    transform: scale(0.75);
+    @include mixin.shadow(1);
+  }
+
+  &__button-checkbox:checked + &__button-round &__button-round-icon {
+    transform: rotate(135deg);
+  }
+  &__button-checkbox:checked + &__button-round &__button-round-icon::after {
+    transform: rotate(270deg);
+  }
+}
+
 @mixin button-popup {
   &__button-popup {
     display: flex;
@@ -69,7 +131,7 @@
     z-index: 100;
     
     --button-popup-min-width: 4rem;
-    transition: all 1s ease-in;
+    transition: all $time-button-popup ease-in;
     
     &-text {
       padding-left: 1rem;
@@ -81,7 +143,7 @@
       
       color: theme.$color-white;
       flex: 1;
-      transition: all 1s ease-in;
+      transition: all $time-button-popup ease-in;
       
       &::before,
       &::after {
@@ -90,7 +152,7 @@
         height: 2.8rem;
         width: 2px;
         background-color: theme.$color-primary;
-        transition: all 1s ease-in;
+        transition: all $time-button-popup ease-in;
       }
       &::before {
         left: 1.9rem;
@@ -100,19 +162,23 @@
       }
     }
   }
+
+  &__button-checkbox {
+    display: none;
+  }
   
-  &__checkbox:checked + &__button-popup {
+  &__button-checkbox:checked + &__button-popup {
     width: var(--button-popup-min-width);
   }
-  &__checkbox:checked + &__button-popup &__button-popup-text {
+  &__button-checkbox:checked + &__button-popup &__button-popup-text {
     color: transparent;
     flex: 0;
   }
-  &__checkbox:checked + &__button-popup &__button-popup-text::before {
+  &__button-checkbox:checked + &__button-popup &__button-popup-text::before {
     background-color: theme.$color-dark-gray;
     transform: rotate(135deg);
   }
-  &__checkbox:checked + &__button-popup &__button-popup-text::after {
+  &__button-checkbox:checked + &__button-popup &__button-popup-text::after {
     background-color: theme.$color-dark-gray;
     transform: rotate(-135deg);
   }

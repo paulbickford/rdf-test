@@ -21,7 +21,6 @@ defmodule RdfTestWeb.Router do
 
     live "/queries", QueryLive.Index
     live "/queries/:id/edit", QueryLive.Edit
-    live "/queries/new", QueryLive.New
     live "/queries/:id", QueryLive.Update
 
     # live "/queries", QueryLive.Index, :index

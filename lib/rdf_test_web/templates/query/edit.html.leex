@@ -1,6 +1,6 @@
 <div class="query-page">
   <div class="resources" phx-hook="resourcesPopupButton">
-    <input type="checkbox" class="resources__checkbox" id="resources-toggle">
+    <input type="checkbox" class="resources__button-checkbox" id="resources-toggle">
     <label for="resources-toggle" class="resources__button-popup" id="resources-button-popup">
       <span class="resources__button-popup-text">resources</span>
     </label>
@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <div class="button-round button-round__left-bottom">
-    <%= live_patch "arrow_back", to: Routes.live_path(@socket, QueryLive.Index), class: "button-round__link material-icons" %>
+  <div class="query-page__button-round query-page__button-round__left-bottom">
+    <%= live_patch "arrow_back", to: Routes.live_path(@socket, QueryLive.Index), class: "query-page__button-round__link material-icons" %>
   </div>
 </div>

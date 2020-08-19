@@ -12,7 +12,7 @@ defmodule RdfTest.Sparql.Query do
   def changeset(query, attrs \\ %{}) do
     query
     |> cast(attrs, [:name, :query])
-    |> validate_required([:name, :query])
+    |> validate_required([:name])
     |> unique_constraint(:name)
   end
 end
