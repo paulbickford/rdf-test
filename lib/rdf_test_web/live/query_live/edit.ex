@@ -18,6 +18,7 @@ defmodule RdfTestWeb.QueryLive.Edit do
     id = String.to_integer(id)
     query = Sparql.get_query!(id)
     changeset = Sparql.change_query(query)
+
     socket = assign(socket, query: query, changeset: changeset)
     {:noreply, socket}
   end
@@ -43,5 +44,22 @@ defmodule RdfTestWeb.QueryLive.Edit do
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, changeset: changeset)}
     end
+  end
+
+  def handle_event("drop-resource", %{"id" => resource_id}, socket) do
+    resource_id = String.to_integer(String.replace_leading(resource_id, "resource-", ""))
+    resource = Sparql.get_resource!(resource_id)
+
+    text = "PREFIX #{resource.prefix}: #{resource.iri}\n"
+
+    changeset =
+      socket.assigns.changeset
+      |> Ecto.Changeset.put_change(
+        :query,
+        text <> Ecto.Changeset.get_field(socket.assigns.changeset, :query)
+      )
+
+    socket = assign(socket, changeset: changeset)
+    {:noreply, socket}
   end
 end

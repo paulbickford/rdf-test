@@ -10,7 +10,14 @@
     <%= text_input f, :name, phx_debounce: "blur", class: "query-form__name" %>
     <%= error_tag f, :name %>
 
-    <%= textarea f, :query, phx_debounce: 500, class: "query-form__textarea", wrap: "off" %>
+    <%=
+      textarea(f,
+      :query,
+      phx_debounce: 500,
+      phx_hook: "drop_zone",
+      class: "query-form__textarea",
+      wrap: "off"
+    ) %>
     <%= error_tag f, :query %>
 
     <div class="query-form__actions">

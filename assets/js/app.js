@@ -21,11 +21,12 @@ import NProgress from 'nprogress';
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
 import PopupButtonHooks from './button-popup';
+import DragDropHooks from './drag-drop';
 
 // Set up Hooks
 // 
 let Hooks = {};
-Hooks = { ...Hooks, ...PopupButtonHooks };
+Hooks = { ...Hooks, ...PopupButtonHooks, ...DragDropHooks };
 
 // Set up LiveSocket
 //

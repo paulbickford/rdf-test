@@ -11,27 +11,25 @@ defmodule RdfTestWeb.QueryLive.Index do
   end
 
   def mount(_params, _session, socket) do
-    socket = assign(socket, queries: Sparql.list_queries())
+    socket = assign(socket, queries: Sparql.list_sorted_queries())
+    {:ok, socket}
+  end
+
+  def update(_assigns, socket) do
     {:ok, socket}
   end
 
   def handle_event("validate_query", %{"name" => query_name}, socket) do
-    IO.puts("****Validate Query******")
-    IO.inspect(query_name)
-
     changeset =
       %Query{}
       |> Sparql.change_query(%{name: query_name})
       |> Map.put(:action, :insert)
 
-    IO.inspect(changeset)
     {:noreply, assign(socket, changeset: changeset)}
   end
 
   def handle_event("add_query", %{"name" => query_name}, socket) do
     query_response = Sparql.create_query(%{name: query_name})
-    IO.puts("****Add Query******")
-    IO.inspect(query_response)
 
     case query_response do
       {:ok, %{id: query_id}} ->

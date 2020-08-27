@@ -6,7 +6,12 @@
       <p><%= live_flash(@flash, :error) %></p>
     </div>
     <%= for resource <- @resources do %>
-      <li class="resources-list__list-item">
+      <li
+        id="resource-<%= resource.id %>"
+        class="resources-list__list-item"
+        draggable="true"
+        phx-hook="draggable"
+      >
         <%= live_component @socket, ResourceLive.Form, resource_id: resource.id %>
       </li>
     <% end %>

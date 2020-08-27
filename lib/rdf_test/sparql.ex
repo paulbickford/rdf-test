@@ -11,6 +11,12 @@ defmodule RdfTest.Sparql do
     Repo.all(Query)
   end
 
+  def list_sorted_queries do
+    Query
+    |> Query.sort()
+    |> Repo.all()
+  end
+
   def change_query(%Query{} = query, attrs \\ %{}) do
     Query.changeset(query, attrs)
   end
