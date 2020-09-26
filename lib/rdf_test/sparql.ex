@@ -75,4 +75,47 @@ defmodule RdfTest.Sparql do
   def delete_resource(%Resource{} = resource) do
     Repo.delete(resource)
   end
+
+  def sparql_query(query, endpoint) do
+    case SPARQL.Client.query(query, endpoint) do
+      {:ok, result} ->
+        format_result(result)
+
+      {:error, error} ->
+        "Error: #{error}"
+    end
+  end
+
+  defp format_result(%RDF.Graph{} = result) do
+    {:graph, result}
+  end
+
+  defp format_result(%SPARQL.Query.Result{} = result) do
+    %{results: raw_results, variables: vars} = result
+
+    results =
+      raw_results
+      |> Enum.map(fn row -> format_row(row) end)
+
+    {:value, %{variables: vars, results: results}}
+  end
+
+  defp format_row(row) do
+    row
+    |> Enum.reduce(%{}, fn {k, v}, acc ->
+      Map.merge(acc, %{k => value_to_string(v)})
+    end)
+  end
+
+  defp value_to_string(%RDF.Literal{} = value) do
+    value.value
+  end
+
+  defp value_to_string(%RDF.IRI{} = value) do
+    value.value
+  end
+
+  defp value_to_string(value) do
+    value
+  end
 end

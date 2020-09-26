@@ -5,6 +5,7 @@ defmodule RdfTest.Sparql.Query do
 
   schema "queries" do
     field :name, :string, unique: true
+    field :endpoint, :string
     field :query, :string
 
     timestamps()
@@ -12,7 +13,7 @@ defmodule RdfTest.Sparql.Query do
 
   def changeset(query, attrs \\ %{}) do
     query
-    |> cast(attrs, [:name, :query])
+    |> cast(attrs, [:name, :endpoint, :query])
     |> validate_required([:name])
     |> unique_constraint(:name)
   end

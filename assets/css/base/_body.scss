@@ -1,3 +1,5 @@
+@use '../themes/default-theme' as theme;
+
 *,
 *::after,
 *::before {
@@ -11,4 +13,5 @@ html {
 
 body {
   box-sizing: border-box;
+  background-color: theme.$color-secondary;
 }

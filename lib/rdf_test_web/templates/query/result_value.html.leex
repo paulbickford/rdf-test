@@ -1,0 +1,25 @@
+<div class="query-result__content"
+  style="--number-columns: <%= Enum.count(@result.variables) %>"
+>
+  <div class="query-result-value" style="grid-template: <%= @grid_columns %>">
+
+    <%= for var <- @result.variables do %>
+      <div class="query-result-value__heading-item"
+        style="grid-column: <%= Edit.grid_area_name(var) %>"
+      >
+        <%= var %>
+      </div>
+    <% end %>
+
+    <%= for row <- @result.results do %>
+      <%= for item <- @result.variables do %>
+        <div class="query-result-value__row-item"
+          style="grid-column: <%= Edit.grid_area_name(item) %>"
+        >
+          <%= row[item] %>
+        </div>
+      <% end %>
+    <% end %>
+
+  </div>
+</div>

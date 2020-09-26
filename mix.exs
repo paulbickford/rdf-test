@@ -47,11 +47,12 @@ defmodule RdfTest.MixProject do
       {:ecto_sql, "~> 3.1"},
       {:floki, ">= 0.0.0", only: :test},
       {:gettext, "~> 0.11"},
+      {:hackney, "~> 1.6"},
       {:jason, "~> 1.0"},
       {:log_viewer, "~> 0.1.0", only: [:dev]},
       {:plug_cowboy, "~> 2.0"},
       {:postgrex, ">= 0.0.0"},
-      {:rdf, "~> 0.7"},
+      {:rdf, "~>0.7"},
       {:sparql, "~> 0.3"},
       {:sparql_client, "~> 0.2"}
     ]

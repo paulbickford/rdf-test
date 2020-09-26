@@ -89,7 +89,7 @@ $bottom-button-round: 5rem;
       display: inline-block;
       height: 2.8rem;
       width: 2px;
-      background-color: theme.$color-dark-gray;
+      background-color: theme.$color-gray-dark-3;
       transition: all $time-button-popup-round ease-in;
     }
     &::after {
@@ -179,7 +179,7 @@ $bottom-button-round: 5rem;
     transform: rotate(135deg);
   }
   &__button-checkbox:checked + &__button-popup &__button-popup-text::after {
-    background-color: theme.$color-dark-gray;
+    background-color: theme.$color-gray-dark-3;
     transform: rotate(-135deg);
   }
 }

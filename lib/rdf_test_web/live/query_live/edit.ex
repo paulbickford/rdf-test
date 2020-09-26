@@ -19,7 +19,9 @@ defmodule RdfTestWeb.QueryLive.Edit do
     query = Sparql.get_query!(id)
     changeset = Sparql.change_query(query)
 
-    socket = assign(socket, query: query, changeset: changeset)
+    socket =
+      assign(socket, query: query, changeset: changeset, result_type: :undefined, result: "")
+
     {:noreply, socket}
   end
 
@@ -61,5 +63,31 @@ defmodule RdfTestWeb.QueryLive.Edit do
 
     socket = assign(socket, changeset: changeset)
     {:noreply, socket}
+  end
+
+  def handle_event("run-query", _params, socket) do
+    query_string = Ecto.Changeset.get_field(socket.assigns.changeset, :query)
+    endpoint = Ecto.Changeset.get_field(socket.assigns.changeset, :endpoint)
+    {result_type, result} = Sparql.sparql_query(query_string, endpoint)
+    grid_columns = grid_columns(result.variables, Enum.count(result.results))
+
+    {:noreply,
+     assign(socket, result_type: result_type, result: result, grid_columns: grid_columns)}
+  end
+
+  defp grid_columns(column_labels, number_rows) do
+    ("\"" <>
+       String.trim(
+         Enum.reduce(
+           column_labels,
+           "",
+           &(&2 <> " " <> grid_area_name(&1))
+         )
+       ) <> "\"\n")
+    |> String.duplicate(number_rows)
+  end
+
+  def grid_area_name(name) do
+    String.replace(String.trim(name), ~r/\s/, "-")
   end
 end

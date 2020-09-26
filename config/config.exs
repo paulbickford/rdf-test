@@ -18,6 +18,9 @@ config :rdf_test, RdfTestWeb.Endpoint,
   pubsub_server: RdfTest.PubSub,
   live_view: [signing_salt: "mO80ZcTs"]
 
+# Configures Tesla (HTTP client library abstraction) to use Hackney for SPARQL
+config :tesla, :adapter, Tesla.Adapter.Hackney
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

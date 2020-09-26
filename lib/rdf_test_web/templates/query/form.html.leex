@@ -3,25 +3,51 @@
     <p><%= live_flash(@flash, :info) %></p>
     <p><%= live_flash(@flash, :error) %></p>
   </div>
-  <%= f = form_for @changeset,
-          "#",
-          [phx_change: :validate, phx_submit: :save] %>
+  <%=
+    f = form_for(
+      @changeset,
+      "#",
+      [phx_change: :validate, phx_submit: :save]
+    )
+  %>
 
-    <%= text_input f, :name, phx_debounce: "blur", class: "query-form__name" %>
+    <%=
+      text_input(
+        f,
+        :name,
+        phx_debounce: "blur",
+        class: "query-form__name"
+      )
+    %>
     <%= error_tag f, :name %>
 
     <%=
-      textarea(f,
-      :query,
-      phx_debounce: 500,
-      phx_hook: "drop_zone",
-      class: "query-form__textarea",
-      wrap: "off"
-    ) %>
+      text_input(
+        f,
+        :endpoint,
+        phx_debounce: "blur",
+        placeholder: "enter endpoint",
+        class: "query-form__endpoint"
+      )
+    %>
+    <%= error_tag f, :endpoint %>
+
+    <%=
+      textarea(
+        f,
+        :query,
+        phx_debounce: 500,
+        phx_hook: "drop_zone",
+        class: "query-form__textarea",
+        wrap: "off"
+      )
+    %>
     <%= error_tag f, :query %>
 
     <div class="query-form__actions">
-      <button class="button-form">run</button>
+      <button class="button-form" phx-click="run-query" >
+        run
+      </button>
       <%= submit "save", class: "button-form" %>
     </div>
   </form>

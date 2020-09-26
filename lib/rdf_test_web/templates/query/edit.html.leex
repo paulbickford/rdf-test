@@ -16,16 +16,24 @@
       </div>
     </div>
     <div class="query-edit__right">
-      <div class="query-results">
-        <div class="query-results__title">
+      <div class="query-result">
+        <div class="query-result__title">
           Results
         </div>
-        <div class="query-results__text">Results text</div>
+        <div>
+          <%= live_component @socket, QueryLive.Result, assigns %>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="query-page__button-round query-page__button-round__left-bottom">
-    <%= live_patch "arrow_back", to: Routes.live_path(@socket, QueryLive.Index), class: "query-page__button-round__link material-icons" %>
+  <div class="query-page__button-round query-page__button-round--left-bottom">
+    <%=
+      live_patch(
+        "arrow_back",
+        to: Routes.live_path(@socket, QueryLive.Index),
+        class: "query-page__button-round__link material-icons"
+      )
+    %>
   </div>
 </div>
