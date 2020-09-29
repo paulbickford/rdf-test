@@ -112,10 +112,28 @@ defmodule RdfTest.Sparql do
   end
 
   defp value_to_string(%RDF.IRI{} = value) do
-    value.value
+    resources = list_resources()
+
+    resource =
+      resources
+      |> Enum.find(fn resource -> String.starts_with?(value.value, extract_iri(resource)) end)
+
+    if is_nil(resource) do
+      value.value
+    else
+      String.replace_prefix(value.value, extract_iri(resource) <> "/", resource.prefix <> ":")
+    end
   end
 
   defp value_to_string(value) do
     value
+  end
+
+  defp extract_iri(resource) do
+    resource.iri
+    |> String.replace_prefix("<", "")
+    |> String.replace_suffix(">", "")
+    |> String.replace_suffix("#", "")
+    |> String.replace_suffix("/", "")
   end
 end
