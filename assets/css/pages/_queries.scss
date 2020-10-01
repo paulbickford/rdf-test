@@ -9,75 +9,65 @@
 }
 
 .queries-list {
-  width: 100%;
-  border-radius: var.$radius-sheet;
-  background-color: theme.$color-background;
-  padding: 2rem 2rem;
-  @include mixin.shadow(1);
-  
-  &__content {
-    border: solid 2px theme.$color-primary;
+    width: 100%;
+    display: grid;
+    grid-template-columns:
+      [name-start] minmax(max-content, 20%)
+      [name-end query-start] 1fr
+      [query-end action-start] max-content [action-end];
     border-radius: var.$radius-sheet;
-  }
+    background-color: theme.$color-background;
+    padding: 2rem 2rem;
+    @include mixin.shadow(1);
 
-  &__list-item {
-    display: list-item;
-    list-style: none;
-
-    :hover, :focus {
-      background-color: theme.$color-background-highlight;
+    &__header {
+      font-size: 1.2em;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: solid 2px theme.$color-primary;
     }
-  }
-
-  &__row {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-
-    :hover, :focus {
-      background-color: transparent;
+  
+    &__row {
+      display: contents;
+      font-size: 1.2rem;
     }
-  }
 
-  &__row-header {
-    padding-bottom: 1.5rem;
-  }
+    &__item {
+      padding: .9rem 1rem 0 1rem;
+      border-bottom: solid 1px theme.$color-gray-light-1;
+    }
+    
+    &__name {
+      grid-column: name-start / name-end;
+    }
+    
+    &__query {
+      grid-column: query-start / query-end;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    
+    &__action {
+      grid-column: action-start / action-end;
+      cursor: default;
+    }
 
-  &__item {
-    padding: 0 1rem;
-  }
+    &__row:hover > div {
+      background-color:theme.$color-gray-light-2;
+      cursor: pointer;
+    }
 
-  &__header {
-    text-decoration: underline;
-    font-size: 1.2em;
-  }
+    &__row button {
+      visibility: hidden;
+    }
+    &__row:hover button {
+      visibility: visible
+    }
 
-  &__name {
-    flex-basis: 20rem;
-    flex-grow: 1;
-    flex-shrink: 1;
-  }
-
-  &__query {
-    flex-basis: 50rem;
-    flex-grow: 2;
-    flex-shrink: 2;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  &__actions {
-    flex-basis: 8.5rem;
-    flex-grow: 0;
-    flex-shrink: 0;
-    visibility: hidden;
-    cursor: default;
-  }
-
-  &__list-item:hover &__actions,
-  &__list-item:focus &__actions {
-    visibility: visible;
-  }
+    &__row:last-of-type > &__item {
+      border-bottom: solid 2px theme.$color-primary;
+    }
 }
 
 .queries-add {

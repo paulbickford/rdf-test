@@ -5,6 +5,7 @@ defmodule RdfTestWeb.QueryLive.Index do
   alias RdfTest.Sparql.Query
   alias RdfTestWeb.QueryView
   alias RdfTestWeb.Router.Helpers, as: Routes
+  alias RdfTestWeb.QueryLive
 
   def render(assigns) do
     QueryView.render("index.html", assigns)
@@ -26,6 +27,14 @@ defmodule RdfTestWeb.QueryLive.Index do
       |> Map.put(:action, :insert)
 
     {:noreply, assign(socket, changeset: changeset)}
+  end
+
+  def handle_event("edit_query", %{"id" => query_id}, socket) do
+    # query = Sparql.get_query!(query_id)
+
+    {:noreply,
+     socket
+     |> push_redirect(to: Routes.live_path(socket, QueryLive.Edit, query_id))}
   end
 
   def handle_event("add_query", %{"name" => query_name}, socket) do

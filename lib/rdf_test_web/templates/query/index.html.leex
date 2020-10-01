@@ -5,25 +5,18 @@
     <p><%= live_flash(@flash, :error) %></p>
   </div>
   <div class="queries-list">
-    <div class="queries-list__row queries-list__row-header">
-      <div class="queries-list__item queries-list__name queries-list__header">Name</div>
-      <div class="queries-list__item queries-list__query queries-list__header">Query</div>
-      <div class="queries-list__item queries-list__actions queries-list__header"></div>
-    </div>
-    <ul class="queries-list__content">
+      <div class=" queries-list__header queries-list__name">Name</div>
+      <div class=" queries-list__header queries-list__query">Query</div>
+      <div class=" queries-list__header queries-list__actions"></div>
       <%= for query <- @queries do %>
-      <li class="queries-list__list-item">
-        <div class="queries-list__row">
+        <div phx-click="edit_query" phx-value-id="<%= query.id %>" class="queries-list__row">
           <div class="queries-list__item queries-list__name"><%= query.name %></div>
           <div class="queries-list__item queries-list__query"><%= query.query %></div>
-          <div class="queries-list__item queries-list__actions">
-            <span><%= live_redirect "create", to: Routes.live_path(@socket, QueryLive.Edit, query.id), class: "button-row-action-icon material-icons"%></span>
+          <div class="queries-list__item queries-list__action">
             <span><button phx-click="delete_query" phx-value-id="<%= query.id %>" class="button-row-action-icon material-icons">delete</button></span>
           </div>
         </div>
-      </li>
       <% end %>
-    </ul>
   </div>
 
   <div class="queries-add">
