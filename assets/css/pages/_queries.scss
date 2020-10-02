@@ -128,12 +128,11 @@
   
   &__button-checkbox:checked ~ &__background {
     opacity: 1;
-  transform: scale(80);
+    transform: scale(80);
   }
   
   &__button-checkbox:checked ~ &__form {
     opacity: 1;
     transform: scale(100%);
   }
-
 }

@@ -22,6 +22,7 @@ import NProgress from 'nprogress';
 // import socket from "./socket"
 import PopupButtonHooks from './button-popup';
 import DragDropHooks from './drag-drop';
+import popupInputFocus from './popup-input-focus';
 
 // Set up Hooks
 // 
@@ -51,4 +52,13 @@ liveSocket.connect();
 // Call disableLatencySim() to disable:
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket;
+
+
+let init = (event) => {
+  console.log("window load event triggered");
+  // Focus input when popup is opened.
+  popupInputFocus();
+}
+
+window.onload = init;
 

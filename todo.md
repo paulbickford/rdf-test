@@ -10,9 +10,9 @@
 
 # query index
 
-# query new
+- Remove "Query Deleted" after 1s.
 
-- Auto-focus text input.
+# query add
 
 # query edit
 
